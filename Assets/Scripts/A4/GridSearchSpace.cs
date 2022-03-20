@@ -25,12 +25,12 @@ namespace A4
 
         public override void Start()
         {
-            base.Start();
+            // base.Start();
 
-            graph = FindObjectOfType<Graph>();
-            graph.IsLocked = false; // make sure the graph is not locked or you can't add nodes and edges.
+            // graph = FindObjectOfType<Graph>();
+            // graph.IsLocked = false; // make sure the graph is not locked or you can't add nodes and edges.
 
-            GenerateGridSearchSpace(); 
+            // GenerateGridSearchSpace(); 
         }
 
         #endregion Start

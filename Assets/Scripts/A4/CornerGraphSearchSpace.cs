@@ -13,6 +13,9 @@ namespace A4
     public class CornerGraphSearchSpace : ExtendedMonoBehaviour
     {
         #region Members and Properties
+
+        [SerializeField]int cellSizeX = 4;
+        [SerializeField]int cellSizeZ = 4;
         
         // Reference the levelInfo. Should be set in the inspector or could set it up in Awake.
         [SerializeField] LevelInfo levelInfo;
@@ -40,6 +43,54 @@ namespace A4
 
         public void GenerateCornerGraphSearchSpace()
         {
+
+            int blockedtracker= 0;
+            int openTracker = 0;
+
+            int countX = (int)((levelInfo.sizeV - 1) / 8f - cellSizeX / 2f);
+            int countZ = (int)((levelInfo.sizeW - 1) / 8f - cellSizeZ / 2f);
+
+            for (int x = 0; x <= countX; x += cellSizeX)
+            {
+                for (int z = 0; z <= countZ; z += cellSizeZ)
+                {
+                    // Add node at (x, z) if clear. Mirror to all four quadrants. Don't duplicate (0,z) or (x, 0).
+                    if(CheckIfClearAt(x, z) == true) {
+                        openTracker += 1;
+                    } else {
+                        blockedtracker +=1;
+                    }
+                    if (z != 0) { 
+                        // AddNodeIfClear(x, -z); 
+                        if(CheckIfClearAt(x, z) == true) {
+                            openTracker += 1;
+                        } else {
+                            blockedtracker +=1;
+                        }
+                    }
+                    if (x != 0) { 
+                        // AddNodeIfClear(-x, z); 
+                        if(CheckIfClearAt(x, z) == true) {
+                            openTracker += 1;
+                        } else {
+                            blockedtracker +=1;
+                        }
+                    }
+                    if ( x != 0 && z != 0) { 
+                        if(CheckIfClearAt(x, z) == true) {
+                            openTracker += 1;
+                        } else {
+                            blockedtracker +=1;
+                        }
+                        // AddNodeIfClear(-x, -z); 
+                    }
+
+                    if(blockedtracker == 1) {
+                        AddNodeAt(x, z);
+                    }
+                }
+            }
+
             if (graph == null || graph.NodeCollection == null)
             {
                 Debug.LogWarning("GenerateCornerGraphSearchSpace: Graph missing.");
@@ -61,6 +112,35 @@ namespace A4
         #region Private/Protected Members
         
         // TODO for A4: You'll probably need some private helper methods here.
+
+        bool CheckIfClearAt(int x, int z)
+        {
+            // TODO: CS-check or Math-check this math. I only Engineer-checked it.
+            int vMin = levelInfo.MapDataXtoV(x - cellSizeX / 2f);
+            int vMax = levelInfo.MapDataXtoV(x + cellSizeX / 2f);
+            
+            int wMin = levelInfo.MapDataZtoW(z - cellSizeZ / 2f);
+            int wMax = levelInfo.MapDataZtoW(z + cellSizeZ / 2f);
+
+            for (int v = vMin; v <= vMax; v++)
+            {
+                for (int w = wMin; w <= wMax; w++)
+                {
+                    if (v < 0 || v >= levelInfo.sizeV || w < 0 || w >= levelInfo.sizeW)
+                    {
+                        // This should happen if we got the math right, but ...
+                        Debug.LogError($"CheckIfClearAt(x={x}, z={z}): produced out of range (v={v}, w={w})");
+                    }
+                    
+                    if (levelInfo.mapData[v, w] != 0) // not clear (not ground)
+                    {
+                        return false;
+                    }
+                }
+            }
+
+            return true; // clear (ground)
+        }
 
         void AddNodeAt(int v, int w)
         {
