@@ -54,55 +54,25 @@ namespace A4
             {
                 for (int z = 0; z <= countZ; z += cellSizeZ)
                 {
-                    // Add node at (x, z) if clear. Mirror to all four quadrants. Don't duplicate (0,z) or (x, 0).
-                    if(CheckIfClearAt(x, z) == true) {
-                        openTracker += 1;
-                    } else {
-                        blockedtracker +=1;
-                    }
-                    if (z != 0) { 
-                        // AddNodeIfClear(x, -z); 
-                        if(CheckIfClearAt(x, z) == true) {
-                            openTracker += 1;
-                        } else {
-                            blockedtracker +=1;
-                        }
-                    }
-                    if (x != 0) { 
-                        // AddNodeIfClear(-x, z); 
-                        if(CheckIfClearAt(x, z) == true) {
-                            openTracker += 1;
-                        } else {
-                            blockedtracker +=1;
-                        }
-                    }
-                    if ( x != 0 && z != 0) { 
-                        if(CheckIfClearAt(x, z) == true) {
-                            openTracker += 1;
-                        } else {
-                            blockedtracker +=1;
-                        }
-                        // AddNodeIfClear(-x, -z); 
-                    }
-
-                    if(blockedtracker == 1) {
-                        AddNodeAt(x, z);
-                    }
+                    checkOnes(x, z);
+                    
                 }
             }
 
             if (graph == null || graph.NodeCollection == null)
             {
                 Debug.LogWarning("GenerateCornerGraphSearchSpace: Graph missing.");
-                return;
             } 
+
+            Parameters.Instance.NodeCastMaximumDistance = MaxCast;
+            graph.NodeCollection.RaycastNodes();
             
             // TODO for A4: Add nodes at corners. Probably call a private helper method to determine the node placement.
 
             // I'm going to add edges using RaycastNodes which checks for LOS between nodes.
             // Change the default maximum range to check from 20 to something reasonable.
-            Parameters.Instance.NodeCastMaximumDistance = MaxCast;
-            graph.NodeCollection.RaycastNodes(); // Creates bidirectional edges between nodes with clear line of sight.
+            // Parameters.Instance.NodeCastMaximumDistance = MaxCast;
+            // graph.NodeCollection.RaycastNodes(); // Creates bidirectional edges between nodes with clear line of sight.
             
             // TODO for A4 (optional): Or you could manually add edges instead of raycasting. See example in GridSearchSpace.
         }
@@ -113,6 +83,66 @@ namespace A4
         
         // TODO for A4: You'll probably need some private helper methods here.
 
+        void checkOnes(int x, int z) {
+
+            int atLeastOneBlocked = 0;
+            int v, w;
+
+            bool blockedTopLeft  = false;
+            bool blockedTopRight  = false;
+            bool blockedBottomLeft  = false;
+            bool blockedBottomRight  = false;
+
+            int vMin = levelInfo.MapDataXtoV(x - cellSizeX / 2f);
+            int vMax = levelInfo.MapDataXtoV(x + cellSizeX / 2f);
+            
+            int wMin = levelInfo.MapDataZtoW(z - cellSizeZ / 2f);
+            int wMax = levelInfo.MapDataZtoW(z + cellSizeZ / 2f);
+
+            for (v = vMin; v <= vMax; v++)
+            {
+                for (w = wMin; w <= wMax; w++)
+                {
+                    if (v < 0 || v >= levelInfo.sizeV || w < 0 || w >= levelInfo.sizeW)
+                    {
+                        // This should happen if we got the math right, but ...
+                        Debug.LogError($"CheckIfClearAt(x={x}, z={z}): produced out of range (v={v}, w={w})");
+                    }
+                    
+                    if (v == vMin && w == wMin) {
+                        if(levelInfo.mapData[v, w] != 0) {
+                            // blockedTopLeft == true;
+                            atLeastOneBlocked += 1;
+                        } else {
+                            // blockedTopLeft == false;
+                        }
+                    } 
+                    if (v == vMax && w == wMin) {
+                        if(levelInfo.mapData[v, w] != 0) {
+                            // blockedTopRight == true;
+                            atLeastOneBlocked += 1;
+                        }
+                    }
+                    if (v == vMin && w == wMax) {
+                        if(levelInfo.mapData[v, w] != 0) {
+                            // blockedBottomLeft == true;
+                            atLeastOneBlocked += 1;
+                        }
+                    }
+                    if (v == vMin && w == wMin) {
+                        if(levelInfo.mapData[v, w] != 0) {
+                            // blockedBottomRight == true;
+                            atLeastOneBlocked += 1;
+                        }
+                    }
+                
+                }
+            }
+            if(atLeastOneBlocked >= 1 || atLeastOneBlocked <=2) {
+                AddNodeAt(x, z);
+            }
+
+        }
         bool CheckIfClearAt(int x, int z)
         {
             // TODO: CS-check or Math-check this math. I only Engineer-checked it.
@@ -142,11 +172,20 @@ namespace A4
             return true; // clear (ground)
         }
 
-        void AddNodeAt(int v, int w)
+        void AddNodeAt(int x, int z)
         {
-            float x = levelInfo.MapDataVtoX(v);
-            float z = levelInfo.MapDataWtoZ(w);
-            graph.NodeCollection.AddNode(new VectorXZ(x, z));
+            // float x = levelInfo.MapDataVtoX(v);
+            // float z = levelInfo.MapDataWtoZ(w);
+            // graph.NodeCollection.AddNode(new VectorXZ(x, z));
+            bool clear = CheckIfClearAt(x, z);
+            string status = clear ? "clear" : "blocked";
+            //Debug.Log($"{(x, z)}: is {status}");
+
+            if (clear && graph != null && graph.NodeCollection != null)
+            {
+                
+                graph.NodeCollection.AddNode(new VectorXZ(x, z));
+            }
         }
 
         #endregion Private/Protected Members

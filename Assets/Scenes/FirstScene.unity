@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.3731193, g: 0.38073996, b: 0.35872698, a: 1}
+  m_IndirectSpecularColor: {r: 0.3731193, g: 0.38073996, b: 0.3587269, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -123,6 +123,23 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!114 &30192472
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: caacf937f99ee42a7aba2e8036a21594, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  verbosity: 0
+  ownerTransform: {fileID: 7416658104084270867}
+  obstacleLayerMask:
+    serializedVersion: 2
+    m_Bits: 512
 --- !u!1 &54004844
 GameObject:
   m_ObjectHideFlags: 0
@@ -218,23 +235,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7733173642089297329, guid: 458711ced0138405e855d058775a4576, type: 3}
   m_PrefabInstance: {fileID: 117449148}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &137057439
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: caacf937f99ee42a7aba2e8036a21594, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  verbosity: 0
-  ownerTransform: {fileID: 432137482}
-  obstacleLayerMask:
-    serializedVersion: 2
-    m_Bits: 512
 --- !u!1001 &222825314
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -525,7 +525,7 @@ MonoBehaviour:
   shortName: Test Entity
   teamName: 
   color: {r: 0, g: 0, b: 0, a: 0}
-  data: {fileID: 137057439}
+  data: {fileID: 1938614313}
   entityTypes:
     types:
     - {fileID: 11400000, guid: 485208a63eb4a4193b23f1105ad8f813, type: 2}
@@ -777,7 +777,7 @@ MonoBehaviour:
   shortName: Adam
   teamName: Blue
   color: {r: 0, g: 0, b: 1, a: 1}
-  data: {fileID: 598999429}
+  data: {fileID: 1573905174}
   entityTypes:
     types:
     - {fileID: 11400000, guid: bb1c4bba73e6546ef98b68a3f1a624e6, type: 2}
@@ -956,54 +956,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ebfb73e19f2b4714a99963d376629588, type: 3}
---- !u!114 &598999429
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 10cbc1b45799d41f3b9453e5b30e699f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  verbosity: 0
-  ownerTransform: {fileID: 436114061}
-  obstacleLayerMask:
-    serializedVersion: 2
-    m_Bits: 512
-  showPath: 1
-  smoothPath: 1
-  showClosestNodeVisualizer: 0
-  showClosestNodeVisualizerOnlyWhenBlocked: 0
-  showClosestNodeVisualizerCastRadius: 1
-  showClosestNodeVisualizerClearColor: {r: 0, g: 1, b: 0, a: 1}
-  showClosestNodeVisualizerBlockedColor: {r: 1, g: 0, b: 0, a: 1}
-  showClosestToEntityWithTypeVisualizer: 0
-  showClosestToEntityWithTypeVisualizerOnlyWhenBlocked: 0
-  showClosestToEntityWithTypeVisualizerCastRadius: 1
-  showClosestToEntityWithTypeVisualizerClearColor: {r: 0, g: 0, b: 1, a: 1}
-  showClosestToEntityWithTypeVisualizerBlockedColor: {r: 0, g: 0, b: 0, a: 1}
-  overlapSphereMaximumColliders: 10
-  overlapSphereRadius: 6
---- !u!114 &637279939
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8da9270bf13174bac88df5b134491e4e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  verbosity: 0
-  ownerTransform: {fileID: 1649582242}
-  obstacleLayerMask:
-    serializedVersion: 2
-    m_Bits: 512
 --- !u!1001 &789189503
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1246,23 +1198,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7733173642089297329, guid: 458711ced0138405e855d058775a4576, type: 3}
   m_PrefabInstance: {fileID: 1082064831}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1148432115
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: caacf937f99ee42a7aba2e8036a21594, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  verbosity: 0
-  ownerTransform: {fileID: 7416658104084270866}
-  obstacleLayerMask:
-    serializedVersion: 2
-    m_Bits: 512
 --- !u!1 &1355426349
 GameObject:
   m_ObjectHideFlags: 0
@@ -1536,6 +1471,54 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7733173642089297329, guid: 458711ced0138405e855d058775a4576, type: 3}
   m_PrefabInstance: {fileID: 1483108929}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1573905174
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10cbc1b45799d41f3b9453e5b30e699f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  verbosity: 0
+  ownerTransform: {fileID: 436114061}
+  obstacleLayerMask:
+    serializedVersion: 2
+    m_Bits: 512
+  showPath: 1
+  smoothPath: 1
+  showClosestNodeVisualizer: 0
+  showClosestNodeVisualizerOnlyWhenBlocked: 0
+  showClosestNodeVisualizerCastRadius: 1
+  showClosestNodeVisualizerClearColor: {r: 0, g: 1, b: 0, a: 1}
+  showClosestNodeVisualizerBlockedColor: {r: 1, g: 0, b: 0, a: 1}
+  showClosestToEntityWithTypeVisualizer: 0
+  showClosestToEntityWithTypeVisualizerOnlyWhenBlocked: 0
+  showClosestToEntityWithTypeVisualizerCastRadius: 1
+  showClosestToEntityWithTypeVisualizerClearColor: {r: 0, g: 0, b: 1, a: 1}
+  showClosestToEntityWithTypeVisualizerBlockedColor: {r: 0, g: 0, b: 0, a: 1}
+  overlapSphereMaximumColliders: 10
+  overlapSphereRadius: 6
+--- !u!114 &1584393445
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: caacf937f99ee42a7aba2e8036a21594, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  verbosity: 0
+  ownerTransform: {fileID: 7416658104084270866}
+  obstacleLayerMask:
+    serializedVersion: 2
+    m_Bits: 512
 --- !u!1 &1634122152
 GameObject:
   m_ObjectHideFlags: 0
@@ -1763,7 +1746,7 @@ MonoBehaviour:
   shortName: Alice
   teamName: Red
   color: {r: 1, g: 0, b: 0, a: 1}
-  data: {fileID: 637279939}
+  data: {fileID: 1686245972}
   entityTypes:
     types:
     - {fileID: 11400000, guid: bb1c4bba73e6546ef98b68a3f1a624e6, type: 2}
@@ -1881,6 +1864,23 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7238505024730553131, guid: f94877374c3a345349549e4f1ed91504, type: 3}
   m_PrefabInstance: {fileID: 1649582234}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1686245972
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8da9270bf13174bac88df5b134491e4e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  verbosity: 0
+  ownerTransform: {fileID: 1649582242}
+  obstacleLayerMask:
+    serializedVersion: 2
+    m_Bits: 512
 --- !u!1001 &1743456298
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4299,6 +4299,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a99171c9d55d440a7a1580bc52e3c089, type: 3}
+--- !u!114 &1938614313
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: caacf937f99ee42a7aba2e8036a21594, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  verbosity: 0
+  ownerTransform: {fileID: 432137482}
+  obstacleLayerMask:
+    serializedVersion: 2
+    m_Bits: 512
 --- !u!1 &2055673730
 GameObject:
   m_ObjectHideFlags: 0
@@ -4480,23 +4497,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ebfb73e19f2b4714a99963d376629588, type: 3}
---- !u!114 &2147303846
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: caacf937f99ee42a7aba2e8036a21594, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  verbosity: 0
-  ownerTransform: {fileID: 7416658104084270867}
-  obstacleLayerMask:
-    serializedVersion: 2
-    m_Bits: 512
 --- !u!1001 &668402957687315529
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4623,7 +4623,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 668402957687315530}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8a2da2de0c578489986223e8f114dc03, type: 3}
   m_Name: 
@@ -4639,12 +4639,14 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 668402957687315530}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 48da291b1183942af9f95d8f78878619, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   verbosity: 0
+  cellSizeX: 4
+  cellSizeZ: 4
   levelInfo: {fileID: 668402957687315531}
 --- !u!1001 &1653374177767457487
 PrefabInstance:
